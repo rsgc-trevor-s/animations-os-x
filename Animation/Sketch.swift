@@ -68,7 +68,7 @@ class Sketch {
         // Draw a circle that moves across the screen
         canvas.drawShapesWithBorders = false
         canvas.fillColor = Color(hue: Float(canvas.frameCount), saturation: 80, brightness: 90, alpha: 100)
-        canvas.drawEllipse(centreX: 30, centreY: y+20, width: 100, height: 5)
+        canvas.drawEllipse(centreX: x, centreY: y, width: 25, height: 25)
         
     }
     
