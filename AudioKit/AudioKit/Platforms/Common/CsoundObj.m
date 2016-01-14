@@ -826,7 +826,7 @@ static void AKBreakpoint(CSOUND *cs, debug_bkpt_info_t *bkpt, void *userdata)
                 if (self.running)
                     [self updateAllValuesToCsound];
                 
-                _ret = csoundPerformKsmps(_cs);
+               _ret = csoundPerformKsmps(_cs);
                 
                 // Write to file.
                 if (self.shouldRecord) {

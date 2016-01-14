@@ -11,7 +11,7 @@ Have fun!
 */
 
 // Create a new canvas
-let canvas = Canvas(width: 500, height: 500)
+let canvas = Canvas(width: 1280, height: 800)
 
 // Draw a circle at the origin with radius of 50 pixels
 canvas.drawEllipse(centreX: 0, centreY: 0, width: 50, height: 50)

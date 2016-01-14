@@ -18,6 +18,9 @@ class Sketch {
     var x = 0
     var y = 0   // Vertical position of circle, will be tied to amplitude of mic input
     var s = 1
+    var height1 = 0
+    
+    
     
     // Objects needed to read mic input and analyze it
     var analyzer: AKAudioAnalyzer!
@@ -29,7 +32,7 @@ class Sketch {
     init() {
         
         // Create canvas object – specify size
-        canvas = Canvas(width: 500, height: 300)
+        canvas = Canvas(width: 1280, height: 800)
         
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 60
@@ -40,36 +43,35 @@ class Sketch {
         AKOrchestra.addInstrument(analyzer)
         analyzer.play()
         microphone.play()
-        
+        height1 = Int(Float(canvas.height))
     }
     
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
-        // Horizontal position of circle
-        x = x + s
-        
-        // Bounce when hitting wall
-        if (x > canvas.width || x < 0) {
-            s *= -1
-        }
-        
         // Print amplitude of mic input (seems to vary between 0 and 1)
         print("Amplitude as a float is: \(analyzer.trackedAmplitude.floatValue)")
         
-        // Tie the vertical position of the circle to the amplitude
-        y = Int( Float(canvas.height) * analyzer.trackedAmplitude.floatValue )
-        
-        // "Clear" the background with a semi-transparent black rectangle
+        // Tie the height of the rectangle to the amplitude
+        y = Int(Float(10000) * analyzer.trackedAmplitude.floatValue )
+    
+              // "Clear" the background with a semi-transparent black rectangle
         canvas.drawShapesWithBorders = false
-        canvas.fillColor = Color(hue: 0, saturation: 0, brightness: 0, alpha: 10)
+        canvas.fillColor = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
         canvas.drawRectangle(bottomRightX: 0, bottomRightY: 0, width: canvas.width, height: canvas.height)
         
-        // Draw a circle that moves across the screen
-        canvas.drawShapesWithBorders = false
-        canvas.fillColor = Color(hue: Float(canvas.frameCount), saturation: 80, brightness: 90, alpha: 100)
-        canvas.drawEllipse(centreX: x, centreY: y, width: 25, height: 25)
+        
         
     }
     
 }
+
+func rectangle(let canvas : Canvas,hue: Float ){
+    //draw rectangle
+    //hue = 100
+    canvas.drawShapesWithBorders = false
+    canvas.fillColor = Color(hue: 100, saturation: 80, brightness: 90, alpha: 100)
+    canvas.drawRectangle(bottomRightX: 25, bottomRightY: 80, width: 100, height: 20, borderWidth: 50)
+   
+}
+
