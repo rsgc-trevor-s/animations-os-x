@@ -20,15 +20,15 @@ class Sketch {
     var rectangleHeightBass = 0
     var ellipseSize = 0
      var circleX = 255
-    var circleY = 400
+    var circleY = 50
     
     var height = 1280
     var width = 800
-    var gap = 500
+    var gap = 125
     var hue = Float(120) //green
     var hue2 = Float(60) //yellow
     var hue3 = Float(10) //red
-    var yPosition = [75,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,800] //creates an array for the y positions of the rectangles
+    var yPosition = [100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,800,825] //creates an array for the y positions of the rectangles
     
     
     // Objects needed to read mic input and analyze it
@@ -52,6 +52,7 @@ class Sketch {
         AKOrchestra.addInstrument(analyzer)
         analyzer.play()
         microphone.play()
+         canvas.drawRectangle(bottomRightX: 0, bottomRightY: 0, width: canvas.width, height: 100)
     }
     
     // Runs repeatedly, equivalent to draw() in Processing
@@ -72,7 +73,7 @@ class Sketch {
         // "Clear" the background with a semi-transparent black rectangle
         canvas.drawShapesWithBorders = false
         canvas.fillColor = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
-        canvas.drawRectangle(bottomRightX: 0, bottomRightY: 0, width: canvas.width, height: canvas.height)
+        canvas.drawRectangle(bottomRightX: 0, bottomRightY: 100, width: canvas.width, height: canvas.height)
         
        
         canvas.fillColor = Color(hue: 40, saturation: 80, brightness: 90, alpha: 90)
@@ -92,6 +93,14 @@ class Sketch {
                 canvas.drawRectangle(bottomRightX: 25, bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
             }
         }
+        //green rectangles Soprano shifted
+        canvas.fillColor = Color(hue: hue, saturation: 80, brightness: 90, alpha: 90)
+        for index in 0...11 {
+            if rectangleHeightSoprano >= yPosition[index] {
+                canvas.drawRectangle(bottomRightX: 25+(3*gap), bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
+            }
+        }
+
         //green rectangles Trebble
         canvas.fillColor = Color(hue: hue, saturation: 80, brightness: 90, alpha: 90)
         for index in 0...11 {
@@ -99,6 +108,14 @@ class Sketch {
                 canvas.drawRectangle(bottomRightX: 25+gap, bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
             }
         }
+        //green rectangles Trebble shifted
+        canvas.fillColor = Color(hue: hue, saturation: 80, brightness: 90, alpha: 90)
+        for index in 0...11 {
+            if rectangleHeightTrebble >= yPosition[index] {
+                canvas.drawRectangle(bottomRightX: 25+(4*gap), bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
+            }
+        }
+
         //green rectangles Bass
         canvas.fillColor = Color(hue: hue, saturation: 80, brightness: 90, alpha: 90)
         for index in 0...11 {
@@ -107,7 +124,14 @@ class Sketch {
             }
         }
         
-        
+        //green rectangles Bass shifted
+        canvas.fillColor = Color(hue: hue, saturation: 80, brightness: 90, alpha: 90)
+        for index in 0...11 {
+            if rectangleHeightBass >= yPosition[index] {
+                canvas.drawRectangle(bottomRightX: 25+(5*gap), bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
+            }
+        }
+
         //yellow bars Soprano
         canvas.fillColor = Color(hue: hue2, saturation: 80, brightness: 90, alpha: 90)
         for index2 in 12...24 {
@@ -116,6 +140,15 @@ class Sketch {
                 canvas.drawRectangle(bottomRightX: 25, bottomRightY: yPosition[index2], width: 100, height: 20, borderWidth: 50)
             }
         }
+        //yellow bars Soprano shifted
+        canvas.fillColor = Color(hue: hue2, saturation: 80, brightness: 90, alpha: 90)
+        for index2 in 12...24 {
+            
+            if(rectangleHeightSoprano>=yPosition[index2]){
+                canvas.drawRectangle(bottomRightX: 25+(3*gap), bottomRightY: yPosition[index2], width: 100, height: 20, borderWidth: 50)
+            }
+        }
+
         //yellow bars Trebble
         canvas.fillColor = Color(hue: hue2, saturation: 80, brightness: 90, alpha: 90)
         for index in 12...24 {
@@ -123,6 +156,14 @@ class Sketch {
                 canvas.drawRectangle(bottomRightX: 25+gap, bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
             }
         }
+        //yellow bars Trebble shifted
+        canvas.fillColor = Color(hue: hue2, saturation: 80, brightness: 90, alpha: 90)
+        for index in 12...24 {
+            if rectangleHeightTrebble >= yPosition[index] {
+                canvas.drawRectangle(bottomRightX: 25+(4*gap), bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
+            }
+        }
+
         //yellow bars Bass
         canvas.fillColor = Color(hue: hue2, saturation: 80, brightness: 90, alpha: 90)
         for index in 12...24 {
@@ -130,15 +171,30 @@ class Sketch {
                 canvas.drawRectangle(bottomRightX: 25+(2*gap), bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
             }
         }
-        
+        //yellow bars Bass shifted
+        canvas.fillColor = Color(hue: hue2, saturation: 80, brightness: 90, alpha: 90)
+        for index in 12...24 {
+            if rectangleHeightBass >= yPosition[index] {
+                canvas.drawRectangle(bottomRightX: 25+(5*gap), bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
+            }
+        }
 
-        //        //red bars soprano
+
+        //red bars soprano
         canvas.fillColor = Color(hue: hue3, saturation: 80, brightness: 90, alpha: 90)
         for index3 in 25...28 {
             if(rectangleHeightSoprano>=yPosition[index3]){
                 canvas.drawRectangle(bottomRightX: 25, bottomRightY: yPosition[index3], width: 100, height: 20, borderWidth: 50)
             }
         }
+        //red bars soprano shifted
+        canvas.fillColor = Color(hue: hue3, saturation: 80, brightness: 90, alpha: 90)
+        for index3 in 25...28 {
+            if(rectangleHeightSoprano>=yPosition[index3]){
+                canvas.drawRectangle(bottomRightX: 25+(3*gap), bottomRightY: yPosition[index3], width: 100, height: 20, borderWidth: 50)
+            }
+        }
+
         
         //red bars Trebble
         canvas.fillColor = Color(hue: hue3, saturation: 80, brightness: 90, alpha: 90)
@@ -147,15 +203,31 @@ class Sketch {
                 canvas.drawRectangle(bottomRightX: 25+gap, bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
             }
         }
+        //red bars Trebble Shifted
+        canvas.fillColor = Color(hue: hue3, saturation: 80, brightness: 90, alpha: 90)
+        for index in 25...28 {
+            if rectangleHeightTrebble >= yPosition[index] {
+                canvas.drawRectangle(bottomRightX: 25+(4*gap), bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
+            }
+        }
+
         
-        //red bars Trebble
+        //red bars Bass
         canvas.fillColor = Color(hue: hue3, saturation: 80, brightness: 90, alpha: 90)
         for index in 25...28 {
             if rectangleHeightBass >= yPosition[index] {
                 canvas.drawRectangle(bottomRightX: 25+(2*gap), bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
             }
         }
+        //red bars Bass shifted
+        canvas.fillColor = Color(hue: hue3, saturation: 80, brightness: 90, alpha: 90)
+        for index in 25...28 {
+            if rectangleHeightBass >= yPosition[index] {
+                canvas.drawRectangle(bottomRightX: 25+(5*gap), bottomRightY: yPosition[index], width: 100, height: 20, borderWidth: 50)
+            }
+        }
 
+        
         
         
     }
