@@ -22,10 +22,12 @@ class Sketch {
     var ellipseHeight = 0
     var circleX = 25
     var circleY = 50
+    var yY = 0
+    var xX=0
     
     var lastX = 0
     var lastY = 0
-    var s = 1
+    var s = 2
     
     var height = 1280
     var width = 800
@@ -66,15 +68,13 @@ class Sketch {
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
-        // Print amplitude of mic input (seems to vary between 0 and 1)
-        //print("Amplitude as a float is: \(analyzer.trackedAmplitude.floatValue)")
         
         // Tie the height of the rectangle to the amplitude
         //Instead of having different frequencies, there is just ratios between the 3 main ranges in music
         
-        rectangleHeightSoprano = Int(Float(5000) * analyzer.trackedAmplitude.floatValue)
-        rectangleHeightTrebble = Int(Float(10000) * analyzer.trackedAmplitude.floatValue)
-        rectangleHeightBass = Int(Float(7500) * analyzer.trackedAmplitude.floatValue)
+        rectangleHeightSoprano = Int(Float(10000) * analyzer.trackedAmplitude.floatValue)
+        rectangleHeightTrebble = Int(Float(15000) * analyzer.trackedAmplitude.floatValue)
+        rectangleHeightBass = Int(Float(12500) * analyzer.trackedAmplitude.floatValue)
         
         ellipseHeight = Int(Float(500) * analyzer.trackedAmplitude.floatValue)
         
@@ -94,14 +94,15 @@ class Sketch {
         }
         
         canvas.fillColor = Color(hue: 32, saturation: 100, brightness: 100, alpha: 100)
-        canvas.drawEllipse(centreX: circleX, centreY: circleY+ellipseHeight, width: 2, height: 2)
+        canvas.drawEllipse(centreX: circleX, centreY: circleY+(2*ellipseHeight), width: 3, height: 3)
         
-        //        lastX = circleX-s
-        //        lastY = circleY
+        yY = circleY+ellipseHeight
+                lastX = circleX-s
+                lastY = yY
         
-        //        //connects the points from the old circle position to the new one with a line
-        //        canvas.fillColor = Color(hue: 80, saturation: 100, brightness: 90, alpha: 100)
-        //        canvas.drawLine(fromX: lastX, fromY: lastY, toX: circleX, toY: ellipseHeight+circleY)
+                //connects the points from the old circle position to the new one with a line
+                canvas.fillColor = Color(hue: 80, saturation: 100, brightness: 90, alpha: 100)
+                canvas.drawLine(fromX: lastX, fromY: lastY, toX: circleX, toY: ellipseHeight+circleY)
         
         
         
