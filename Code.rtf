@@ -1,0 +1,16 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 IPO \
+\
+INPUT:\
+This program takes input readings from the microphone built into the computer, or headphones if connected. It keeps the microphone on for the whole duration the code is running.\
+\
+PROCESSING:   \
+The code then processes the input from the mic and does some small calculations like multiplying to act like a mapping function to get the numbers in the right range to display as a graphic. There are various loops that check to see how loud the mic input is, and judging by that it creates visual output on the screen \
+\
+OUTPUT:\
+The visual output of this code is 9 bars for volume meters, the original plan was to have the frequencies split so it would display the volume of the bass, treble and soprano of the sound being inputed. The issue was that there was no way for me to split the sound into separate frequencies. So the volume meters being displayed is just a fixed ratio between the three frequencies. There are also certain thresholds for the volume, green which is 11 bars and down, yellow which is 12 to 24 bars and red which is 25 to 28 bars. The last thing is a small ellipse that moves across the bottom of the screen that also tracks the volume of the entire sound being played into the mic. The ellipse changes its y-position depending on the audio level and its x position is a steady speed across the screen. Once the ellipse reaches the end of the screen it clears the bottom section of the screen and restarts from the left side of the screen again.  }
